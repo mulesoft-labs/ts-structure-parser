@@ -27,12 +27,8 @@
     "email": "petrochenko.pavel.a@gmail.com",
     "url": "ru.linkedin.com/in/petrochenkopavel"
   },
-  "files": [
-    "dist/",
-    "typings.json"
-  ],
   "homepage": "https://github.com/mulesoft-labs/typesystem-ts",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/mulesoft-labs/typesystem-ts/issues"
   },
