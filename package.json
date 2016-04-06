@@ -13,17 +13,17 @@
   "typings": "./dist/tsStructureParser.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/raml-org/ts-structure-parser.git"
+    "url": "https://github.com/mulesoft-labs/ts-structure-parser.git"
   },
   "keywords": [
     "typescript",
     "content",
     "parser"
   ],
-  "homepage": "https://github.com/raml-org/ts-structure-parser",
+  "homepage": "https://github.com/mulesoft-labs/ts-structure-parser",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/raml-org/ts-structure-parser/issues"
+    "url": "https://github.com/mulesoft-labs/ts-structure-parser/issues"
   },
   "devDependencies": {
     "typings": "^0.5.1"
