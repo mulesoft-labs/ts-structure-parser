@@ -1,6 +1,6 @@
 {
   "name": "ts-structure-parser",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": false,
   "main": "dist/tsStructureParser.js",
   "scripts": {
@@ -15,22 +15,17 @@
   "typings": "./dist/tsStructureParser.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mulesoft-labs/typesystem-ts.git"
+    "url": "https://github.com/mulesoft/ts-structure-parser.git"
   },
   "keywords": [
     "raml",
-    "definititions",
+    "definition",
     "typesystem"
   ],
-  "author": {
-    "name": "Pavel Petrochenko",
-    "email": "petrochenko.pavel.a@gmail.com",
-    "url": "ru.linkedin.com/in/petrochenkopavel"
-  },
-  "homepage": "https://github.com/mulesoft-labs/typesystem-ts",
+  "homepage": "https://github.com/mulesoft/ts-structure-parser",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/mulesoft-labs/typesystem-ts/issues"
+    "url": "https://github.com/mulesoft/ts-structure-parser/issues"
   },
   "devDependencies": {
     "typings": "^0.5.1",
