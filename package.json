@@ -4,7 +4,11 @@
   "private": false,
   "main": "dist/tsStructureParser.js",
   "scripts": {
-    "build": "rm -rf dist/ && ./node_modules/typescript/bin/tsc "
+    "build": "rm -rf dist/ && ./node_modules/typescript/bin/tsc ",
+    "pullall" : "dev-env-installer pullall",
+    "buildall" : "dev-env-installer buildall",
+    "testall" : "dev-env-installer testall",
+    "devInstall": "dev-env-installer install"
   },
   "dependencies": {
     "underscore": "^1.8.3",
@@ -26,6 +30,7 @@
     "url": "https://github.com/mulesoft-labs/ts-structure-parser/issues"
   },
   "devDependencies": {
-    "typings": "^0.5.1"
+    "typings": "^0.5.1",
+    "dev-env-installer":"^0.0.1"
   }
 }
