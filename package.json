@@ -31,6 +31,6 @@
   },
   "devDependencies": {
     "typings": "^0.5.1",
-    "dev-env-installer":"^0.0.1"
+    "dev-env-installer":"^0.0.2"
   }
 }
