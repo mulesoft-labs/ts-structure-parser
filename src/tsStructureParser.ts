@@ -4,6 +4,7 @@
 
 import ts=require("typescript")
 export import tsm=require("./tsASTMatchers")
+export import helperMethodExtractor = require("./helperMethodExtractor")
 import fsUtil=require("./fsUtils")
 export interface Module{
     classes:ClassModel[]
