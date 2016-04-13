@@ -4,7 +4,7 @@
   "private": false,
   "main": "dist/tsStructureParser.js",
   "scripts": {
-    "build": "rm -rf dist/ && ./node_modules/typescript/bin/tsc ",
+    "build": "rimraf dist && tsc",
     "pullall" : "dev-env-installer pullall",
     "buildall" : "dev-env-installer buildall",
     "testall" : "dev-env-installer testall",
@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "typings": "^0.5.1",
-    "dev-env-installer":"^0.0.2"
+    "dev-env-installer":"^0.0.2",
+    "rimraf":"*"
   }
 }
