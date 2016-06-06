@@ -1,6 +1,6 @@
 {
   "name": "ts-structure-parser",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "private": false,
   "main": "dist/tsStructureParser.js",
   "scripts": {
