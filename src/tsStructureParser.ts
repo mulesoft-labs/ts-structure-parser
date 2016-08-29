@@ -445,6 +445,9 @@ export function buildType(t:ts.TypeNode,path:string):TypeModel{
     if (t.kind==ts.SyntaxKind.AnyKeyword){
         return basicType("any",null)
     }
+    if (t.kind==ts.SyntaxKind.VoidKeyword){
+        return basicType("void",null)
+    }
 
     if (t.kind==ts.SyntaxKind.TypeReference){
         var tr:ts.TypeReferenceNode=<ts.TypeReferenceNode>t;
@@ -474,7 +477,7 @@ export function buildType(t:ts.TypeNode,path:string):TypeModel{
         }
         return res;
     }
-    throw new Error("Case not supported"+t.kind)
+    throw new Error("Case not supported: "+t.kind)
 }
 function parseQualified2(n:any):string{
     if (!n.name){
