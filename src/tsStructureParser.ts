@@ -2,132 +2,27 @@
  * Created by kor on 08/05/15.
  */
 
-import ts=require("typescript")
-export import tsm=require("./tsASTMatchers")
-export import helperMethodExtractor = require("./helperMethodExtractor")
-import fsUtil=require("./fsUtils")
-export interface Module{
-    classes:ClassModel[]
-    imports:{ [name:string]:Module}
-    aliases:AliasNode[]
-    enumDeclarations:EnumDeclaration[]
-    name:string
-}
-export interface AliasNode{
-    name:string;
-    type:TypeModel
-}
-export class EnumDeclaration{
-    name:string
-    members:string[]
-}
-export enum TypeKind{
-    BASIC,
-    ARRAY,
-    UNION
-}
-export interface TypeModel{
-    typeKind:TypeKind
-
-}
-export interface BasicType extends TypeModel{
-    //typeName:string
-    nameSpace:string
-    basicName:string
-    typeName:string
-    typeArguments:TypeModel[]
-    modulePath:string;
-}
-
-export interface ArrayType extends TypeModel{
-    base:TypeModel
-}
-
-export type Arg=string|number|boolean;
-
-export interface UnionType extends TypeModel{
-    options:TypeModel[]
-}
-export interface Annotation{
-    name:string
-    arguments:(Arg|Arg[])[];
-}
-
-
-export interface FieldModel{
-    name:string
-    type:TypeModel
-    annotations:Annotation[];
-    valueConstraint:Constraint;
-    optional:boolean
-}
-export interface MethodModel{
-    start:number
-    end:number
-    name:string
-    text:string
-    returnType:TypeModel
-    arguments:ParameterModel[]
-}
-
-export interface ParameterModel{
-    start:number
-    end:number
-    name:string
-    text:string
-    type:TypeModel
-}
-
-export interface Constraint{
-    isCallConstraint:boolean
-    value?:any
-}
-export interface CallConstraint extends Constraint{
-    value:Annotation
-}
-export interface ValueConstraint extends Constraint{
-    value:string|number|boolean
-}
-
-export interface ClassModel{
-
-    name:string
-
-    annotations:Annotation[];
-    moduleName:string;
-    extends:TypeModel[]
-    implements:TypeModel[]
-
-    fields:FieldModel[]
-
-    methods:MethodModel[]
-
-    typeParameters:string[]
-    typeParameterConstraint:string[]
-    isInterface:boolean
-    annotationOverridings:{[key:string]:Annotation[]}
-}
+import ts=require("typescript");
+export import tsm=require("./tsASTMatchers");
+export import helperMethodExtractor = require("./helperMethodExtractor");
+import fsUtil=require("./fsUtils");
+import {TypeModel} from "./index";
+import {TypeKind} from "./index";
+import {ArrayType} from "./index";
+import {Annotation} from "./index";
+import {Constraint} from "./index";
+import {FieldModel} from "./index";
+import {Module} from "./index";
+import {MethodModel} from "./index";
+import {ParameterModel} from "./index";
+import {UnionType} from "./index";
+import {BasicType} from "./index";
+import {classDecl} from "./index";
 
 function parse(content:string){
     return ts.createSourceFile("sample.ts",content,ts.ScriptTarget.ES3,true);
 }
 var fld=tsm.Matching.field();
-
-export function classDecl(name:string,isInteface:boolean):ClassModel{
-    return {
-        name:name,
-        methods:[],
-        typeParameters:[],
-        typeParameterConstraint:[],
-        implements:[],
-        fields:[],
-        isInterface:isInteface,
-        annotations:[],
-        extends:[],
-        moduleName:null,
-        annotationOverridings:{}
-    }
-}
 
 export function parseStruct(content:string,modules:{[path:string]:Module},mpth:string):Module{
     var mod=parse(content);
