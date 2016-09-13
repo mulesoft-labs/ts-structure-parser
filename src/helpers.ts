@@ -40,7 +40,9 @@ export class HelperMethod{
             }
             return {
                 name: "this",
-                type: null
+                type: null,
+                optional: false,
+                defaultValue: undefined
             }
         });
     }
@@ -51,6 +53,10 @@ export interface Arg{
     name:string;
 
     type:index.TypeModel;
+    
+    defaultValue: any;
+    
+    optional: boolean;
 }
 
 export interface Meta{

@@ -251,7 +251,7 @@ function buildAnnotation(e:ts.Expression):Annotation{
          throw new Error("Only call expressions may be annotations");
     }
 }
-function parseArg(n:ts.Expression):any{
+export function parseArg(n:ts.Expression):any{
     if (n.kind==ts.SyntaxKind.StringLiteral){
         var l:ts.StringLiteral=<ts.StringLiteral>n;
 

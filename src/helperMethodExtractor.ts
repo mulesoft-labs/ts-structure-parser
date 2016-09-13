@@ -94,9 +94,18 @@ function readArg(node,srcPath:string):Arg{
     var name = node.name.text;
 
     var type = tsStructureParser.buildType(node.type,srcPath);
+    
+    var defaultValue;    
+    var optional = node.questionToken != null;
+    if(node.initializer != null){
+        defaultValue = tsStructureParser.parseArg(node.initializer);
+        optional = true;
+    }
     return {
         name:name,
-        type:type
+        type:type,
+        defaultValue: defaultValue,
+        optional: optional
     }
 
 
