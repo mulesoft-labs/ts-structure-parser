@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "underscore": "^1.8.3",
-    "typescript": "1.8.7"
+    "typescript": "2.5.2"
   },
   "typings": "./dist/index.d.ts",
   "repository": {
@@ -30,7 +30,8 @@
     "url": "https://github.com/mulesoft-labs/ts-structure-parser/issues"
   },
   "devDependencies": {
-    "typings": "^0.5.1",
+    "@types/node": "4.2.20",
+    "@types/underscore": "1.8.3",
     "dev-env-installer":"0.0.5",
     "rimraf":"*"
   }

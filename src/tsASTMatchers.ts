@@ -211,7 +211,7 @@ export module Matching {
     }
     export class PathNode {
         name:string
-        arguments:Expression[] = null;
+        arguments:ReadonlyArray<Expression> = null;
         _callExpression:ts.CallExpression
 
         constructor(name:string,private _base:Node) {
