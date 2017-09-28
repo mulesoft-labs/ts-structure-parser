@@ -3,18 +3,18 @@
     "build" : "npm run build",
     "test" : "gulp test",
     "gitUrl" : "https://github.com/raml-org/raml-js-parser-2.git",
-    "gitBranch": "typescript-2.5.2"
+    "gitBranch": "develop"
   },
   "raml-definition-system" : {
     "build" : "npm run build",
     "gitUrl" : "https://github.com/raml-org/raml-definition-system.git",
-    "gitBranch": "typescript-2.5.2"
+    "gitBranch": "develop"
   },
   "raml-typesystem" : {
     "build" : "npm run build",
     "test" : "npm run test-cov",
     "gitUrl" : "https://github.com/raml-org/typesystem-ts.git",
-    "gitBranch": "typescript-2.5.2"
+    "gitBranch": "develop"
   },
   "ts-structure-parser" : {
     "build" : "npm run build",
@@ -24,11 +24,11 @@
   "yaml-ast-parser" : {
     "build" : "npm run build",
     "gitUrl" : "https://github.com/mulesoft-labs/yaml-ast-parser.git",
-    "gitBranch": "typescript-2.5.2"
+    "gitBranch": "develop"
   },
   "ts-model" : {
     "build" : "npm run build",
     "gitUrl" : "https://github.com/mulesoft-labs/ts-model.git",
-    "gitBranch": "typescript-2.5.2"
+    "gitBranch": "develop"
   }
 }
