@@ -22,5 +22,19 @@
     "grunt-mocha-test": "^0.13.2",
     "mocha": "^3.5.0",
     "ts-node": "^3.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AbatapCompany/ts-structure-parser.git"
+  },
+  "keywords": [
+    "typescript",
+    "content",
+    "parser"
+  ],
+  "homepage": "https://github.com/AbatapCompany/ts-structure-parser",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/AbatapCompany/ts-structure-parser/issues"
   }
 }
