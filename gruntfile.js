@@ -26,6 +26,11 @@ module.exports = function(grunt) {
           tsconfig: true
         }
       },
+
+      clean: {
+        app: ['./dist'],
+        test: ['./test/dist']
+      },
       
       tslint: {
         options: {
@@ -54,14 +59,15 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("grunt-ts");
     grunt.loadNpmTasks("grunt-tslint");
     grunt.loadNpmTasks('grunt-mocha-test');
+    grunt.loadNpmTasks('grunt-contrib-clean');
 
 
     grunt.registerTask("build", [
-      "ts:app", "tslint"
+      "clean:app", "ts:app", "tslint"
     ]);
 
     grunt.registerTask("test", [
-      "ts:test",  "mochaTest"
+      "clean:test", "ts:test",  "mochaTest"
     ]);    
 
   };
