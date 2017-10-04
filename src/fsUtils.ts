@@ -1,4 +1,3 @@
-/// <reference path="../typings/main.d.ts" />
 import pth=require("path")
 import fs=require("fs")
 
