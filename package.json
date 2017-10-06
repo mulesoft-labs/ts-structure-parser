@@ -32,7 +32,7 @@
   "devDependencies": {
     "@types/node": "4.2.20",
     "@types/underscore": "1.8.3",
-    "dev-env-installer":"0.0.5",
+    "dev-env-installer": "^0.0.14",
     "rimraf":"*"
   }
 }
