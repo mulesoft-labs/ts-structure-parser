@@ -6,8 +6,6 @@
 
 *.iml
 
-/typings/
-
 /dist/
 
 .project
