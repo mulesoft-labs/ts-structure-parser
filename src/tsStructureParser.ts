@@ -315,15 +315,26 @@ export function parseArg(n: ts.Expression): any {
     }
 
     if (n.kind === ts.SyntaxKind.ObjectLiteralExpression) {
-        var obj: ts.ObjectLiteralExpression = <ts.ObjectLiteralExpression>n;
+        const obj: ts.ObjectLiteralExpression = <ts.ObjectLiteralExpression>n;
         let res: any = null;
         try {
-            let res = JSON.parse(obj.getFullText());
+            return JSON.parse(obj.getFullText());
         } catch (e) {
             throw new Error(`Can't parse string "${obj.getFullText()}" to json`);
         }
-
-        return res;
+    }
+    if (n.kind === ts.SyntaxKind.ObjectLiteralExpression) {
+        const obj: ts.ObjectLiteralExpression = <ts.ObjectLiteralExpression>n;
+        let res: any = null;
+        try {
+            return JSON.parse(obj.getFullText());
+        } catch (e) {
+            throw new Error(`Can't parse string "${obj.getFullText()}" to json`);
+        }
+    }
+    if (n.kind === ts.SyntaxKind.ArrowFunction) {
+        //mocl for arrow function
+        return null;
     }
 
     throw new Error("Unknown value in annotation");
