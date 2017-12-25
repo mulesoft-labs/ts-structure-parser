@@ -318,16 +318,7 @@ export function parseArg(n: ts.Expression): any {
         const obj: ts.ObjectLiteralExpression = <ts.ObjectLiteralExpression>n;
         let res: any = null;
         try {
-            return JSON.parse(obj.getFullText());
-        } catch (e) {
-            throw new Error(`Can't parse string "${obj.getFullText()}" to json`);
-        }
-    }
-    if (n.kind === ts.SyntaxKind.ObjectLiteralExpression) {
-        const obj: ts.ObjectLiteralExpression = <ts.ObjectLiteralExpression>n;
-        let res: any = null;
-        try {
-            return JSON.parse(obj.getFullText());
+            return JSON.parse(obj.getFullText().split("\'").join("\""));
         } catch (e) {
             throw new Error(`Can't parse string "${obj.getFullText()}" to json`);
         }
