@@ -318,7 +318,14 @@ export function parseArg(n: ts.Expression): any {
         const obj: ts.ObjectLiteralExpression = <ts.ObjectLiteralExpression>n;
         let res: any = null;
         try {
-            return JSON.parse(obj.getFullText().split("\'").join("\""));
+            let jsonString = obj.getFullText().split("\'").join("\"");
+            let matches = jsonString.match(/ [\w]+.[\w]+\(\)/);
+            if (matches && matches.length) {
+                matches.forEach(match => {
+                    jsonString = jsonString.replace(match, `"${match}"`);
+                });
+            }
+            return JSON.parse(jsonString);
         } catch (e) {
             throw new Error(`Can't parse string "${obj.getFullText()}" to json`);
         }
