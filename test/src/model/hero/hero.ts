@@ -34,7 +34,7 @@ export class Hero {
     public details: HeroDetail[];
 
     @FieldDecorator()
-    @FieldDecoratorWithFuncParam(() => {console.log("function");})
+    @FieldDecoratorWithFuncParam(() => { console.log("function");})
     @FieldDecoratorWithFuncParam(testFunction)
     public simpleArray: number[];
 }
