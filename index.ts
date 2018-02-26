@@ -4,6 +4,7 @@ import tsStructureParser = require("./src/tsStructureParser");
 export interface Module {
     classes: ClassModel[];
     imports: { [name: string]: Module};
+    _imports: ImportNode[];
     aliases: AliasNode[];
     enumDeclarations: EnumDeclaration[];
     name: string;
@@ -12,6 +13,12 @@ export interface Module {
 export interface AliasNode {
     name: string;
     type: TypeModel;
+}
+
+export interface ImportNode {
+    clauses: string[];
+    absPath: string;
+    isNodeModule: boolean;
 }
 
 export class EnumDeclaration {

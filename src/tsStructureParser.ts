@@ -27,11 +27,41 @@ var fld = tsm.Matching.field();
 
 export function parseStruct(content: string, modules: {[path: string]: Module}, mpth: string): Module {
     var mod = parse(content);
-    var module: Module = {classes: [], aliases: [], enumDeclarations: [], imports: {}, name: mpth};
+    var module: Module = {classes: [], aliases: [], enumDeclarations: [], imports: {}, _imports:[], name: mpth};
     modules[mpth] = module;
     var currentModule: string = null;
     tsm.Matching.visit(mod, x => {
 
+        if (x.kind ===ts.SyntaxKind.ImportDeclaration) {
+            var impDec =<ts.ImportDeclaration>x;
+            var localMod = parse(x.getText());
+            var localImport = {clauses: [] , absPath:"", isNodeModule: false}
+            var localNamedImports: string[];
+            var localAbsPath: string;
+            var localNodeModule: boolean = false;
+            tsm.Matching.visit(localMod, y => {
+                var _import = {}
+                if(y.kind === ts.SyntaxKind.NamedImports) {
+                    var lit = impDec.importClause.getText();
+                    localNamedImports = lit.substring(1,lit.length -1).split(',');
+                    localImport.clauses = localNamedImports.map(im => {
+                        return im.trimLeft();
+                    });;
+                }
+                if(y.kind === ts.SyntaxKind.StringLiteral) {
+                    var localPath = y.getText().substring(1,y.getText().length -1);
+                    if(localPath[0] === ".") {
+                        localAbsPath = fsUtil.resolve(fsUtil.dirname(mpth) + "/", localPath);
+                    } else {
+                        localAbsPath = localPath;
+                        localNodeModule = true;
+                    }
+                    localImport.absPath = localAbsPath;
+                    localImport.isNodeModule = localNodeModule;
+                }
+            });
+            module._imports.push(localImport);
+        }
         if (x.kind === ts.SyntaxKind.ModuleDeclaration) {
             var cmod = <ts.ModuleDeclaration>x;
             currentModule = cmod.name.text;
@@ -331,8 +361,8 @@ export function parseArg(n: ts.Expression): any {
         }
     }
     if (n.kind === ts.SyntaxKind.ArrowFunction) {
-        //mocl for arrow function
-        return null;
+        //mock for arrow function
+        return (<ts.ArrowFunction>n).getText();
     }
 
     throw new Error("Unknown value in annotation");

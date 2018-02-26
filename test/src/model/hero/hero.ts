@@ -1,5 +1,7 @@
 import {ClassDecorator, ClassDecoratorWithParam}  from "../decorator/decorator";
-import {FieldDecorator, FieldDecoratorWithParam, FieldDecoratorWith2Params} from "../decorator/decorator";
+import {FieldDecorator, FieldDecoratorWithParam, FieldDecoratorWith2Params, FieldDecoratorWithFuncParam} from "../decorator/decorator";
+import {testFunction}  from "./testFunction";
+import { } from 'grunt';
 
 @ClassDecorator()
 @ClassDecoratorWithParam("HeroDetailClass")
@@ -32,5 +34,9 @@ export class Hero {
     public details: HeroDetail[];
 
     @FieldDecorator()
+    @FieldDecoratorWithFuncParam(() => {
+        console.log("function");
+    })
+    @FieldDecoratorWithFuncParam(testFunction)
     public simpleArray: number[];
 }

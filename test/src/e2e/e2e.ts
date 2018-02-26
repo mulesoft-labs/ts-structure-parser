@@ -17,10 +17,7 @@ describe("E2E Tests", () => {
         let decls = fs.readFileSync(filePath).toString();
         let parsedStructure: Module = parseStruct(decls, {}, filePath);
         let expectedStruct: any = JSON.parse(fs.readFileSync(structPath, "utf8"));
-
-          //console.log(JSON.stringify(parsedStructure));
-
-          expect(parsedStructure).be.deep.equal(expectedStruct);
+        expect(parsedStructure).be.deep.equal(expectedStruct);
 
           done();
       });

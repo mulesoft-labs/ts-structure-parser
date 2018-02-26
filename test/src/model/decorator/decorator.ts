@@ -27,3 +27,14 @@ export function FieldDecoratorWith2Params(name: string, options: any): any {
         var f;
     };
 }
+
+export function FieldDecoratorWithFuncParam(func: Function): any {
+    return function() {
+        var f;
+    };
+}
+export function FieldDecoratorWithObjectParam(func: Object): any {
+    return function() {
+        var f;
+    };
+}

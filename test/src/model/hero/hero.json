@@ -206,6 +206,18 @@
                         {
                             "name": "FieldDecorator",
                             "arguments": []
+                        },
+                        {
+                            "arguments":[
+                                "() => {\r\n        console.log(\"function\");\r\n    }"
+                            ],
+                            "name": "FieldDecoratorWithFuncParam"
+                        },
+                        {
+                            "arguments": [
+                                "testFunction"
+                            ],
+                            "name": "FieldDecoratorWithFuncParam"
                         }
                     ]
                 }
@@ -226,6 +238,40 @@
             "extends": [],
             "moduleName": null,
             "annotationOverridings": {}
+        }
+    ],
+    "_imports": [
+        {
+            "absPath": "C:\\Git\\AbatapCompany\\ts-structure-parser\\test\\src\\model\\decorator\\decorator",
+            "clauses": [
+                "ClassDecorator",
+                "ClassDecoratorWithParam"
+            ],
+            "isNodeModule": false
+        },
+        {
+            "absPath": "C:\\Git\\AbatapCompany\\ts-structure-parser\\test\\src\\model\\decorator\\decorator",
+            "clauses": [
+                "FieldDecorator",
+                "FieldDecoratorWithParam",
+                "FieldDecoratorWith2Params",
+                "FieldDecoratorWithFuncParam"
+            ],
+            "isNodeModule": false
+        },
+        {
+            "absPath": "C:\\Git\\AbatapCompany\\ts-structure-parser\\test\\src\\model\\hero\\testFunction",
+            "clauses":  [
+                "testFunction"
+            ],
+            "isNodeModule": false
+        },
+        {
+            "absPath": "grunt",
+            "clauses": [
+                ""
+            ],
+            "isNodeModule": true
         }
     ],
     "aliases": [],
