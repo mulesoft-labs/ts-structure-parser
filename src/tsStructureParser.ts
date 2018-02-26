@@ -39,7 +39,7 @@ export function parseStruct(content: string, modules: {[path: string]: Module}, 
             var localNamedImports: string[];
             var localAbsPath: string[];
             var localNodeModule: boolean = false;
-            var pth = require('path');
+            var pth = require("path");
             tsm.Matching.visit(localMod, y => {
                 var _import = {};
                 if (y.kind === ts.SyntaxKind.NamedImports ) {
