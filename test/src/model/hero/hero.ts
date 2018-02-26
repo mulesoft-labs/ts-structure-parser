@@ -1,7 +1,7 @@
 import {ClassDecorator, ClassDecoratorWithParam}  from "../decorator/decorator";
 import {FieldDecorator, FieldDecoratorWithParam, FieldDecoratorWith2Params, FieldDecoratorWithFuncParam} from "../decorator/decorator";
 import {testFunction}  from "./testFunction";
-import { } from 'grunt';
+import { } from "grunt";
 
 @ClassDecorator()
 @ClassDecoratorWithParam("HeroDetailClass")

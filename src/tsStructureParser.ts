@@ -35,21 +35,21 @@ export function parseStruct(content: string, modules: {[path: string]: Module}, 
         if ( x.kind === ts.SyntaxKind.ImportDeclaration ) {
             var impDec = <ts.ImportDeclaration>x;
             var localMod = parse(x.getText());
-            var localImport = { clauses: [] , absPath: "", isNodeModule: false}
+            var localImport = { clauses: [] , absPath: "", isNodeModule: false};
             var localNamedImports: string[];
             var localAbsPath: string;
             var localNodeModule: boolean = false;
             tsm.Matching.visit(localMod, y => {
-                var _import = {}
+                var _import = {};
                 if (y.kind === ts.SyntaxKind.NamedImports ) {
                     var lit = impDec.importClause.getText();
-                    localNamedImports = lit.substring(1, lit.length -1).split(",");
+                    localNamedImports = lit.substring( 1, lit.length -1).split(",");
                     localImport.clauses = localNamedImports.map( im => {
                         return im.trimLeft();
-                    });;
+                    } );
                 }
-                if(y.kind === ts.SyntaxKind.StringLiteral) {
-                    var localPath = y.getText().substring(1, y.getText().length -1);
+                if (y.kind === ts.SyntaxKind.StringLiteral) {
+                    var localPath = y.getText().substring( 1, y.getText().length -1);
                     if ( localPath[0] === "." ) {
                         localAbsPath = fsUtil.resolve(fsUtil.dirname(mpth) + "/", localPath);
                     } else {
