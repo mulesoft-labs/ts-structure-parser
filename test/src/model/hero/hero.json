@@ -209,7 +209,7 @@
                         },
                         {
                             "arguments":[
-                                "() => {\r\n        console.log(\"function\");\r\n    }"
+                                "() => {console.log(\"function\");}"
                             ],
                             "name": "FieldDecoratorWithFuncParam"
                         },
