@@ -43,13 +43,13 @@ export function parseStruct(content: string, modules: {[path: string]: Module}, 
                 var _import = {};
                 if (y.kind === ts.SyntaxKind.NamedImports ) {
                     var lit = impDec.importClause.getText();
-                    localNamedImports = lit.substring( 1, lit.length -1).split(",");
+                    localNamedImports = lit.substring( 1, lit.length - 1).split(",");
                     localImport.clauses = localNamedImports.map( im => {
                         return im.trimLeft();
                     } );
                 }
                 if (y.kind === ts.SyntaxKind.StringLiteral) {
-                    var localPath = y.getText().substring( 1, y.getText().length -1);
+                    var localPath = y.getText().substring( 1, y.getText().length - 1);
                     if ( localPath[0] === "." ) {
                         localAbsPath = fsUtil.resolve(fsUtil.dirname(mpth) + "/", localPath);
                     } else {
