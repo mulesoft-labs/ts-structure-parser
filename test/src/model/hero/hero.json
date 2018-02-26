@@ -242,7 +242,7 @@
     ],
     "_imports": [
         {
-            "absPath": "C:\\Git\\AbatapCompany\\ts-structure-parser\\test\\src\\model\\decorator\\decorator",
+            "absPath": "C:/Git/AbatapCompany/ts-structure-parser/test/src/model/decorator/decorator",
             "clauses": [
                 "ClassDecorator",
                 "ClassDecoratorWithParam"
@@ -250,7 +250,7 @@
             "isNodeModule": false
         },
         {
-            "absPath": "C:\\Git\\AbatapCompany\\ts-structure-parser\\test\\src\\model\\decorator\\decorator",
+            "absPath": "C:/Git/AbatapCompany/ts-structure-parser/test/src/model/decorator/decorator",
             "clauses": [
                 "FieldDecorator",
                 "FieldDecoratorWithParam",
@@ -260,7 +260,7 @@
             "isNodeModule": false
         },
         {
-            "absPath": "C:\\Git\\AbatapCompany\\ts-structure-parser\\test\\src\\model\\hero\\testFunction",
+            "absPath": "C:/Git/AbatapCompany/ts-structure-parser/test/src/model/hero/testFunction",
             "clauses":  [
                 "testFunction"
             ],
