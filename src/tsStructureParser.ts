@@ -46,7 +46,7 @@ export function parseStruct(content: string, modules: {[path: string]: Module}, 
                     var lit = impDec.importClause.getText();
                     localNamedImports = lit.substring( 1, lit.length - 1).split(",");
                     localImport.clauses = localNamedImports.map( im => {
-                        return im.trimLeft();
+                        return im.trim();
                     } );
                 }
                 if (y.kind === ts.SyntaxKind.StringLiteral) {

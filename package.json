@@ -9,21 +9,21 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "typescript": "^2.5.3"
+    "typescript": "2.7.2"
   },
   "devDependencies": {
-    "@types/chai": "^4.0.4",
-    "@types/mocha": "^2.2.43",
-    "@types/node": "^8.0.31",
-    "chai": "^4.1.1",
-    "grunt": "^1.0.1",
-    "grunt-contrib-clean": "^1.1.0",
-    "grunt-mocha-test": "^0.13.2",
-    "grunt-ts": "^6.0.0-beta.16",
-    "grunt-tslint": "^5.0.1",
-    "mocha": "^3.5.0",
-    "ts-node": "^3.3.0",
-    "tslint": "^5.7.0"
+    "@types/chai": "4.1.2",
+    "@types/mocha": "2.2.48",
+    "@types/node": "8.9.4",
+    "chai": "4.1.1",
+    "grunt": "1.0.2",
+    "grunt-contrib-clean": "1.1.0",
+    "grunt-mocha-test": "0.13.2",
+    "grunt-ts": "6.0.0-beta.16",
+    "grunt-tslint": "5.0.1",
+    "mocha": "3.5.0",
+    "ts-node": "3.3.0",
+    "tslint": "5.9.1"
   },
   "repository": {
     "type": "git",
