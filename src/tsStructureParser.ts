@@ -367,6 +367,9 @@ export function parseArg(n: ts.Expression): any {
         return (<ts.ArrowFunction>n).getText();
     }
 
+    if (n.kind === ts.SyntaxKind.NullKeyword) {
+        return n.getText();
+    }
     throw new Error("Unknown value in annotation");
 }
 
