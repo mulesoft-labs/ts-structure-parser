@@ -445,8 +445,10 @@ export function buildType(t: ts.TypeNode, path: string): TypeModel {
             });
         }
         return res;
+    } else {
+        return basicType("mock", null);
     }
-    throw new Error("Case not supported: " + t.kind);
+    //throw new Error("Case not supported: " + t.kind);
 }
 function parseQualified2(n: any): string {
     if (!n.name) {
