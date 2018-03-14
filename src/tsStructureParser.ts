@@ -370,7 +370,8 @@ export function parseArg(n: ts.Expression): any {
     if (n.kind === ts.SyntaxKind.NullKeyword) {
         return n.getText();
     }
-    throw new Error("Unknown value in annotation");
+    return n.getText();
+    //throw new Error("Unknown value in annotation");
 }
 
 function parseName(n: ts.Expression): string {
