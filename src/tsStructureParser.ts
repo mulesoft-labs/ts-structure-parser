@@ -357,6 +357,17 @@ export function parseArg(n: ts.Expression): any {
                     jsonString = jsonString.replace(match, `"${match}"`);
                 });
             }
+            let regExp = /: ?[a-zA-Z]\w+(\.\w+)?/g;
+            let m = jsonString.match(regExp);
+            if ( m ) {
+                m.forEach(match => {
+                    let innerReg = /[a-zA-Z]\w+(\.\w+)?/;
+                    let innerMatch = innerReg.exec(match)[0];
+                    if (!(innerMatch === "true" || innerMatch === "false")) {
+                        jsonString =  jsonString.replace(innerMatch, `"${innerMatch}"`);
+                    }
+                });
+            }
             return JSON.parse(jsonString);
         } catch (e) {
             throw new Error(`Can't parse string "${obj.getFullText()}" to json`);
