@@ -19,6 +19,7 @@ import {ParameterModel} from "../index";
 import {UnionType} from "../index";
 import {BasicType} from "../index";
 import {classDecl} from "../index";
+import { JSONTransformer } from "./jsonTransformer";
 
 function parse(content: string) {
     return ts.createSourceFile("sample.ts", content, ts.ScriptTarget.ES3, true);
@@ -350,24 +351,7 @@ export function parseArg(n: ts.Expression): any {
         const obj: ts.ObjectLiteralExpression = <ts.ObjectLiteralExpression>n;
         let res: any = null;
         try {
-            let jsonString = obj.getFullText().split("\'").join("\"");
-            let matches = jsonString.match(/ [\w]+.[\w]+\(\)/);
-            if (matches && matches.length) {
-                matches.forEach(match => {
-                    jsonString = jsonString.replace(match, `"${match}"`);
-                });
-            }
-            let regExp = /: ?[a-zA-Z]\w+(\.\w+)?/g;
-            let m = jsonString.match(regExp);
-            if ( m ) {
-                m.forEach(match => {
-                    let innerReg = /[a-zA-Z]\w+(\.\w+)?/;
-                    let innerMatch = innerReg.exec(match)[0];
-                    if (!(innerMatch === "true" || innerMatch === "false")) {
-                        jsonString =  jsonString.replace(innerMatch, `"${innerMatch}"`);
-                    }
-                });
-            }
+            let jsonString = JSONTransformer.toValidateView(obj);
             return JSON.parse(jsonString);
         } catch (e) {
             throw new Error(`Can't parse string "${obj.getFullText()}" to json`);
