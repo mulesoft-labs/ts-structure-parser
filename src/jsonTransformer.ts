@@ -1,7 +1,6 @@
 export class JSONTransformer {
-    public static unique(arr) {
+    public static unique(arr: string[]): string[] {
         let obj = {};
-    
         for (var i = 0; i < arr.length; i++) {
           var str = arr[i];
           obj[str] = true;
@@ -22,7 +21,7 @@ export class JSONTransformer {
         if ( m ) {
             m = m.map(item => {
                 return (<string>item).substring(1).trim();
-            })
+            });
             m = JSONTransformer.unique(m);
             m.forEach(match => {
                 let re = new RegExp(match + "[ ,}]?", "g");
