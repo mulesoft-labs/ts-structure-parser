@@ -18,20 +18,16 @@ export class JSONTransformer {
         }
         let regExp = /: ?[a-zA-Z]\w+(\.\w+)?/g;
         let m = jsonString.match(regExp);
-        if ( m ) {
+        if (m) {
             m = m.map(item => {
-                return (<string>item).substring(1).trim();
+                return item.substring(1).trimLeft();
             });
             m = JSONTransformer.unique(m);
             m.forEach(match => {
-                let re = new RegExp(match + "[ ,}]?", "g");
-                if (!(match === "true" || match === "false")) {
-                    jsonString = jsonString.replace(re, `"${match}"`);
-                    let spaceReg = /" ?(\r?\n?\s+?)?"/g;
-                    jsonString = jsonString.replace(spaceReg, `","`);
-                    if (jsonString[jsonString.length - 1] !== "}") {
-                        jsonString = jsonString + "}";
-                    }
+                if (!(match.match(/ ?(true|false)[ ,}]?/))) {
+                    let reg = new RegExp(match, "g");
+                    let replaceWord ="\"" + match.substring(0,match.length-1) + "\"" + match[match.length - 1];
+                    jsonString = jsonString.replace(reg, replaceWord);
                 }
             });
         }
