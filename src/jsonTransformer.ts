@@ -26,7 +26,7 @@ export class JSONTransformer {
             m.forEach(match => {
                 if (!(match.match(/ ?(true|false)[ ,}]?/))) {
                     let reg = new RegExp(match, "g");
-                    let replaceWord = "\"" + match.substring(0 , match.length - 1) + "\"" + match[match.length - 1];
+                    let replaceWord = "\"" + match.substring(0 , match.length) + "\"" ;
                     jsonString = jsonString.replace(reg, replaceWord);
                 }
             });
