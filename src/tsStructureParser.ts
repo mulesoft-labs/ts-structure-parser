@@ -372,6 +372,17 @@ export function buildType(t:ts.TypeNode,path:string):TypeModel{
         }
         return res;
     }
+    if (t.kind==ts.SyntaxKind.TypeLiteral){
+        var tl:ts.TypeLiteralNode=<ts.TypeLiteralNode>t;
+        var res=basicType('Literal', path);
+        for (const m of tl.members) {
+            if (m.kind==ts.SyntaxKind.PropertySignature) {
+                const _type = buildType((<ts.PropertySignature>m).type, path);
+                res.typeArguments.push(_type);
+            }
+        }
+        return res;
+    }
     throw new Error("Case not supported: "+t.kind)
 }
 function parseQualified2(n:any):string{
