@@ -1,18 +1,23 @@
 {
   "name": "ts-structure-parser",
-  "version": "0.0.16",
+  "version": "0.0.20",
   "private": false,
   "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
+    "nd": "nodemon",
+    "dev": "nodemon -w src -e ts -x yarn run build",
     "build": "rimraf dist && tsc",
-    "pullall" : "dev-env-installer pullall",
-    "buildall" : "dev-env-installer buildall",
-    "testall" : "dev-env-installer testall",
+    "pullall": "dev-env-installer pullall",
+    "buildall": "dev-env-installer buildall",
+    "testall": "dev-env-installer testall",
     "devInstall": "dev-env-installer install"
   },
   "dependencies": {
-    "underscore": "1.8.3",
-    "typescript": "2.5.2"
+    "typescript": "2.5.2",
+    "underscore": "1.8.3"
   },
   "typings": "./dist/index.d.ts",
   "repository": {
@@ -33,6 +38,7 @@
     "@types/node": "4.2.20",
     "@types/underscore": "1.8.3",
     "dev-env-installer": "0.0.14",
-    "rimraf":"*"
+    "nodemon": "^1.17.4",
+    "rimraf": "*"
   }
 }

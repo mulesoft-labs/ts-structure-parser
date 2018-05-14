@@ -1,5 +1,7 @@
+import ts=require("typescript");
 export import helpers = require("./helpers");
 import tsStructureParser = require("./tsStructureParser");
+import { TextRange } from "typescript";
 
 export interface Module{
     classes:ClassModel[]
@@ -49,25 +51,21 @@ export interface Annotation{
 }
 
 
-export interface FieldModel{
+export interface FieldModel extends TextRange{
     name:string
     type:TypeModel
     annotations:Annotation[];
     valueConstraint:Constraint;
     optional:boolean
 }
-export interface MethodModel{
-    start:number
-    end:number
+export interface MethodModel extends TextRange{
     name:string
     text:string
     returnType:TypeModel
     arguments:ParameterModel[]
 }
 
-export interface ParameterModel{
-    start:number
-    end:number
+export interface ParameterModel extends TextRange{
     name:string
     text:string
     type:TypeModel
@@ -84,7 +82,7 @@ export interface ValueConstraint extends Constraint{
     value:string|number|boolean
 }
 
-export interface ClassModel{
+export interface ClassModel extends TextRange{
 
     name:string
 
@@ -103,9 +101,12 @@ export interface ClassModel{
     annotationOverridings:{[key:string]:Annotation[]}
 }
 
-export function classDecl(name:string,isInteface:boolean):ClassModel{
+export function classDecl(clazz:ts.ClassDeclaration,isInteface:boolean, content:string):ClassModel{
+    const text = content.substring(clazz.pos, clazz.end);
+    let startPos = text.indexOf(' ' + clazz.name.text) + 1;
+    
     return {
-        name:name,
+        name:clazz.name.text,
         methods:[],
         typeParameters:[],
         typeParameterConstraint:[],
@@ -115,7 +116,9 @@ export function classDecl(name:string,isInteface:boolean):ClassModel{
         annotations:[],
         extends:[],
         moduleName:null,
-        annotationOverridings:{}
+        annotationOverridings:{},
+        pos: clazz.pos + startPos,
+        end: clazz.pos + startPos + clazz.name.text.length,
     }
 }
 

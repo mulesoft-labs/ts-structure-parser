@@ -90,7 +90,7 @@ export function parseStruct(content:string,modules:{[path:string]:Module},mpth:s
         if (c){
 
             var fields:{[n:string]:FieldModel}={}
-            var clazz=classDecl(c.name.text,isInterface)
+            var clazz=classDecl(c,isInterface, content);
             clazz.moduleName=currentModule;
             module.classes.push(clazz)
             c.members.forEach(x=>{
@@ -102,7 +102,7 @@ export function parseStruct(content:string,modules:{[path:string]:Module},mpth:s
                 }
                 var field:ts.PropertyDeclaration=fld.doMatch(x)
                 if (field){
-                    var f=buildField(field,mpth);
+                    var f=buildField(field,content,mpth);
                     if (f.name=='$'){
                         clazz.annotations=f.annotations
                     }
@@ -160,30 +160,39 @@ export function parseStruct(content:string,modules:{[path:string]:Module},mpth:s
     })
     return module;
 }
-function buildField(f:ts.PropertyDeclaration,path:string):FieldModel{
+function buildField(f:ts.PropertyDeclaration,content:string,path:string):FieldModel{
+    const text = content.substring(f.pos, f.end);
+    let startPos = text.indexOf(' ' + f.name['text']) + 1;
+    const name = f.name['text'];
     return {
-        name:f.name['text'],
+        name:name,
         type:buildType(f.type,path),
-        annotations:f.name['text'].charAt(0)=='$'?buildInitializer(f.initializer):[],
-        valueConstraint:f.name['text'].charAt(0)!='$'?buildConstraint(f.initializer):null,
-        optional:f.questionToken!=null
+        annotations:name.charAt(0)=='$'?buildInitializer(f.initializer):[],
+        valueConstraint:name.charAt(0)!='$'?buildConstraint(f.initializer):null,
+        optional:f.questionToken!=null,
+        pos: f.pos + startPos,
+        end: f.pos + startPos + name.length,
     }
 }
 
-function buildMethod(md:ts.MethodDeclaration, content, path:string):MethodModel {
+function buildMethod(md:ts.MethodDeclaration, content:string, path:string):MethodModel {
     var aliasName = (<ts.Identifier>md.name).text;
+
+
     var text = content.substring(md.pos, md.end);
     var params:ParameterModel[] = [];
     md.parameters.forEach(x=>{
         params.push(buildParameter(x,content,path));
     });
+    let startPos = text.indexOf(aliasName + '(');
+    
     var method = {
         returnType:buildType(md.type,path),
         name: aliasName,
-        start:md.pos,
-        end: md.end,
+        end: md.pos + startPos + aliasName.length,
         text: text,
-        arguments:params
+        arguments:params,
+        pos: md.pos + startPos,
     };
     return method;
 };
@@ -193,7 +202,7 @@ function buildParameter(f:ts.ParameterDeclaration,content,path:string):Parameter
     var text = content.substring(f.pos, f.end);
     return {
         name:f.name['text'],
-        start:f.pos,
+        pos:f.pos,
         end: f.end,
         text: text,
         type:buildType(<ts.TypeNode>f.type,path)
@@ -369,6 +378,17 @@ export function buildType(t:ts.TypeNode,path:string):TypeModel{
             tra.typeArguments.forEach(x=> {
                 res.typeArguments.push(buildType(x, path))
             })
+        }
+        return res;
+    }
+    if (t.kind==ts.SyntaxKind.TypeLiteral){
+        var tl:ts.TypeLiteralNode=<ts.TypeLiteralNode>t;
+        var res=basicType('Literal', path);
+        for (const m of tl.members) {
+            if (m.kind==ts.SyntaxKind.PropertySignature) {
+                const _type = buildType((<ts.PropertySignature>m).type, path);
+                res.typeArguments.push(_type);
+            }
         }
         return res;
     }
