@@ -11,8 +11,8 @@
     "devInstall": "dev-env-installer install"
   },
   "dependencies": {
-    "underscore": "1.8.3",
-    "typescript": "2.8.4"
+    "underscore": "1.9.1",
+    "typescript": "3.0.1"
   },
   "typings": "./dist/index.d.ts",
   "repository": {
