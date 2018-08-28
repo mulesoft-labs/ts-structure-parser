@@ -1,6 +1,6 @@
 {
   "name": "ts-structure-parser",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "private": false,
   "main": "dist/index.js",
   "scripts": {
@@ -11,8 +11,8 @@
     "devInstall": "dev-env-installer install"
   },
   "dependencies": {
-    "underscore": "1.8.3",
-    "typescript": "2.5.2"
+    "underscore": "1.9.1",
+    "typescript": "3.0.1"
   },
   "typings": "./dist/index.d.ts",
   "repository": {
