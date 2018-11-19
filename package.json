@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "underscore": "1.9.1",
-    "typescript": "3.0.1"
+    "typescript": "3.1.6"
   },
   "typings": "./dist/index.d.ts",
   "repository": {
