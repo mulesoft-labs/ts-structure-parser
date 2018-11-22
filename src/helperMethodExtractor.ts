@@ -3,7 +3,6 @@ import tsm=require("./tsASTMatchers");
 import path=require("path");
 import fs=require("fs");
 
-import index=require("./index");
 import tsStructureParser=require("./tsStructureParser");
 import {HelperMethod} from "./helpers";
 import {Meta} from "./helpers";
