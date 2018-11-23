@@ -1,4 +1,4 @@
-import index=require("./index");
+import model=require("ts-structure-model");
 import helperMethodExtractor = require("./helperMethodExtractor");
 
 var ns:{[key:string]:boolean} = {'RamlWrapper':true};
@@ -8,7 +8,7 @@ export class HelperMethod{
     constructor(
         public originalName:string,
         public wrapperMethodName:string,
-        public returnType:index.TypeModel,
+        public returnType:model.TypeModel,
         public args:Arg[],
         public meta:Meta) {
 
@@ -52,7 +52,7 @@ export interface Arg{
 
     name:string;
 
-    type:index.TypeModel;
+    type:model.TypeModel;
     
     defaultValue: any;
     
@@ -72,18 +72,18 @@ export interface Meta{
     deprecated?: boolean
 }
 
-export function flatten(t:index.TypeModel, namespaces?:{[key:string]:boolean}):string[]{
+export function flatten(t:model.TypeModel, namespaces?:{[key:string]:boolean}):string[]{
 
-    if(t.typeKind==index.TypeKind.ARRAY){
+    if(t.typeKind==model.TypeKind.ARRAY){
         if(namespaces) {
             return [];
         }
         else{
-            return [ flatten((<index.ArrayType>t).base)[0]+'[]' ];
+            return [ flatten((<model.ArrayType>t).base)[0]+'[]' ];
         }
     }
-    else if(t.typeKind==index.TypeKind.BASIC){
-        var bt = (<index.BasicType>t);
+    else if(t.typeKind==model.TypeKind.BASIC){
+        var bt = (<model.BasicType>t);
 
         var str = bt.basicName;
         var nameSpace = bt.nameSpace && bt.nameSpace.trim();
@@ -103,8 +103,8 @@ export function flatten(t:index.TypeModel, namespaces?:{[key:string]:boolean}):s
         }
         return [ str ];
     }
-    else if (t.typeKind==index.TypeKind.UNION){
-        var ut = <index.UnionType>t;
+    else if (t.typeKind==model.TypeKind.UNION){
+        var ut = <model.UnionType>t;
         var result:string[] = [];
         ut.options.forEach(x=>result=result.concat(flatten(x,namespaces)));
         return result;
