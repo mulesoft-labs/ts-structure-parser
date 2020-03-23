@@ -35,17 +35,17 @@ export class JSONTransformer {
         }
 
         // make all value like function in branches
-        regExp = /: ?[a-zA-Z]\w+(\.\w+)?/g;
+        regExp = /:(\s)*?[a-zA-Z]\w+(\.\w+)?/g;
         m = jsonString.match(regExp);
         if (m) {
             m = m.map(item => {
-                return item.substring(1).trimLeft();
+                return item.trim();
             });
             m = JSONTransformer.unique(m);
             m.forEach(match => {
                 if (!(match.match(/ ?(true|false)[ ,}]?/))) {
                     let reg = new RegExp(match, "g");
-                    let replaceWord = "\"" + match.substring(0 , match.length) + "\"" ;
+                    let replaceWord = `: "${match.substring(1, match.length).trim()}"`;
                     jsonString = jsonString.replace(reg, replaceWord);
                 }
             });
